@@ -165,6 +165,15 @@ ENTRYPOINT ["tini", "--", "/usr/local/bin/my_init"]
 CMD ["--no-main-command"]
 
 #
+# Frontend assets build stage
+#
+FROM node:22-bookworm-slim AS frontend-builder
+WORKDIR /app
+COPY . .
+RUN npm ci --include=dev \
+    && npm run build
+
+#
 # Final build (Just environment vars and squishing the FS)
 #
 FROM pre-final AS final
@@ -179,10 +188,7 @@ RUN composer install --no-dev --no-ansi --no-autoloader --no-interaction \
     && composer dump-autoload --optimize --classmap-authoritative \
     && composer clear-cache
 
-RUN npm ci --include=dev \
-    && npm run build \
-    && npm cache clean --force \
-    && rm -rf node_modules
+COPY --from=frontend-builder --chown=azuracast:azuracast /app/web/static/vite_dist /var/azuracast/www/web/static/vite_dist
 
 USER root
 
