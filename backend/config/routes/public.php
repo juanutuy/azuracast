@@ -31,6 +31,9 @@ return static function (RouteCollectorProxy $app) {
             $group->get('[/{embed:embed|social}]', Controller\Frontend\PublicPages\PlayerAction::class)
                 ->setName('public:index');
 
+            $group->get('/lunaradio', Controller\Frontend\PublicPages\LunaPlayerAction::class)
+                ->setName('public:lunaradio');
+
             $group->get('/oembed/{format:json|xml}', Controller\Frontend\PublicPages\OEmbedAction::class)
                 ->setName('public:oembed');
 

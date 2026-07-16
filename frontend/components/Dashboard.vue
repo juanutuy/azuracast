@@ -264,7 +264,7 @@ import { useApiRouter } from "~/functions/useApiRouter.ts";
 import useOptionalStorage from "~/functions/useOptionalStorage";
 import { useUserAllowed } from "~/functions/useUserAllowed.ts";
 import { useAxios } from "~/vendor/axios";
-import { useAzuraCastDashboardGlobals } from "~/vendor/azuracast.ts";
+import { useAzuraCastDashboardGlobals } from "~/vendor/streamgt.ts";
 import { useTranslate } from "~/vendor/gettext";
 import IconIcAccountCircle from "~icons/ic/baseline-account-circle";
 import IconIcHeadphones from "~icons/ic/baseline-headphones";

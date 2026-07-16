@@ -1,7 +1,7 @@
 import initApp from "~/layout";
 import {h} from "vue";
 import {createRouter, createWebHistory} from "vue-router";
-import {useAzuraCast} from "~/vendor/azuracast";
+import {useAzuraCast} from "~/vendor/streamgt";
 import PodcastsLayout from "~/components/Public/Podcasts/PodcastsLayout.vue";
 import usePodcastRoutes from "~/components/Public/Podcasts/routes";
 

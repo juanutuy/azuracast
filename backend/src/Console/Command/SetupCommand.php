@@ -16,7 +16,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
     name: 'azuracast:setup',
-    description: 'Run all general AzuraCast setup steps.',
+    description: 'Run all general StreamGT setup steps.',
 )]
 final class SetupCommand extends CommandAbstract
 {
@@ -57,11 +57,11 @@ final class SetupCommand extends CommandAbstract
 
         // Header display
         if ($isInit) {
-            $io->title(__('AzuraCast Initializing...'));
+            $io->title(__('StreamGT Initializing...'));
         } else {
-            $io->title(__('AzuraCast Setup'));
+            $io->title(__('StreamGT Setup'));
             $io->writeln(
-                __('Welcome to AzuraCast. Please wait while some key dependencies of AzuraCast are set up...')
+                __('Welcome to StreamGT. Please wait while some key dependencies of StreamGT are set up...')
             );
             $io->newLine();
         }
@@ -119,7 +119,7 @@ final class SetupCommand extends CommandAbstract
         if ($update) {
             $io->success(
                 [
-                    __('AzuraCast is now updated to the latest version!'),
+                    __('StreamGT is now updated to the latest version!'),
                 ]
             );
         } else {
@@ -128,7 +128,7 @@ final class SetupCommand extends CommandAbstract
             /** @noinspection HttpUrlsUsage */
             $io->success(
                 [
-                    __('AzuraCast installation complete!'),
+                    __('StreamGT installation complete!'),
                     sprintf(
                         __('Visit %s to complete setup.'),
                         'http://' . $publicIp

@@ -21,6 +21,7 @@ const blankProps: ApiStationsVueProfileProps = {
     publicHistoryEmbedUrl: "",
     publicScheduleEmbedUrl: "",
     publicPodcastsEmbedUrl: "",
+    publicLunaradioEmbedUrl: "",
     frontendAdminUri: "",
     frontendAdminPassword: "",
     frontendSourcePassword: "",

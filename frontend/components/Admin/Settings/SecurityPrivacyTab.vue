@@ -95,7 +95,7 @@
                 >
                     <template #description>
                         {{
-                            $gettext('Web hooks allow AzuraCast to make outgoing HTTP requests with information about station playback. This is often safe, but could represent a security risk in some scenarios.')
+                            $gettext('Web hooks allow StreamGT to make outgoing HTTP requests with information about station playback. This is often safe, but could represent a security risk in some scenarios.')
                         }}
                     </template>
                 </form-group-checkbox>

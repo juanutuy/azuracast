@@ -73,6 +73,10 @@ export const useStationQuery = () => {
             );
             return data;
         },
+        enabled: computed(() => {
+            const id = stationId.value;
+            return id !== null && !isNaN(id) && id > 0;
+        }),
         staleTime: 10 * 60 * 1000,
         placeholderData: blankStationGlobals,
     });

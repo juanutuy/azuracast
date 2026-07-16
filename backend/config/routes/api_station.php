@@ -44,8 +44,14 @@ return static function (RouteCollectorProxy $group) {
 
                     $group->get('/nowplaying', Controller\Api\NowPlayingAction::class);
 
+                    $group->get('/icy-metadata', Controller\Api\Stations\IcyMetadataAction::class)
+                        ->setName('api:stations:icy-metadata');
+
                     $group->get('/schedule', Controller\Api\Stations\ScheduleAction::class)
                         ->setName('api:stations:schedule');
+
+                    $group->get('/lunaradio-config', Controller\Api\Stations\LunaRadioConfig\GetAction::class)
+                        ->setName('api:stations:lunaradio-config:get');
 
                     // Song Requests
                     $group->get('/requests', Controller\Api\Stations\Requests\ListAction::class)
@@ -999,6 +1005,12 @@ return static function (RouteCollectorProxy $group) {
                             );
                         }
                     )->add(new Middleware\Permissions(StationPermissions::Broadcasting, true));
+
+                    $group->put(
+                        '/lunaradio-config',
+                        Controller\Api\Stations\LunaRadioConfig\PutAction::class
+                    )->setName('api:stations:lunaradio-config:put')
+                        ->add(new Middleware\Permissions(StationPermissions::Profile, true));
 
                     // Logs
                     $group->group(

@@ -5,7 +5,7 @@ import { App, Component, createApp, h, reactive } from "vue";
 import AppWrapper from "~/components/Layout/AppWrapper.vue";
 import { VueAppGlobals } from "~/entities/ApiInterfaces.ts";
 import installAxios from "~/vendor/axios";
-import { globalConstantsKey, useAzuraCast } from "~/vendor/azuracast";
+import { globalConstantsKey, useAzuraCast } from "~/vendor/streamgt";
 import { installTranslate } from "~/vendor/gettext";
 import installTanstack from "~/vendor/tanstack.ts";
 

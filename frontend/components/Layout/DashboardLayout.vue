@@ -23,7 +23,7 @@
             class="navbar-brand ms-0 me-auto"
             :to="{ name: 'dashboard' }"
         >
-            azura<strong>cast</strong>
+            stream<strong>gt</strong>
             <small v-if="instanceName">{{ instanceName }}</small>
         </router-link>
 
@@ -146,7 +146,7 @@ import { useUserAllowed } from "~/functions/useUserAllowed.ts";
 import {
     useAzuraCastDashboardGlobals,
     useAzuraCastUser,
-} from "~/vendor/azuracast.ts";
+} from "~/vendor/streamgt.ts";
 import { useProvideLightbox } from "~/vendor/lightbox.ts";
 import IconIcAccountCircle from "~icons/ic/baseline-account-circle";
 import IconIcExitToApp from "~icons/ic/baseline-exit-to-app";

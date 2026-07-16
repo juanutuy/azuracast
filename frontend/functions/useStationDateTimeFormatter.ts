@@ -2,7 +2,7 @@ import { toRefs } from "@vueuse/core";
 import { DateTimeMaybeValid } from "luxon";
 import { MaybeRefOrGetter, toValue } from "vue";
 import { useStationData } from "~/functions/useStationQuery.ts";
-import { useAzuraCast } from "~/vendor/azuracast.ts";
+import { useAzuraCast } from "~/vendor/streamgt.ts";
 import { useLuxon } from "~/vendor/luxon.ts";
 
 export default function useStationDateTimeFormatter(

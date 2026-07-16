@@ -1424,6 +1424,7 @@ export interface ApiStationsVueProfileProps {
     publicHistoryEmbedUrl: string;
     publicScheduleEmbedUrl: string;
     publicPodcastsEmbedUrl: string;
+    publicLunaradioEmbedUrl: string;
     frontendAdminUri: string;
     frontendAdminPassword: string;
     frontendSourcePassword: string;

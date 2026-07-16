@@ -1,6 +1,6 @@
 import { App } from "vue";
 import { createGettext, Language } from "vue3-gettext";
-import { useAzuraCast } from "~/vendor/azuracast.ts";
+import { useAzuraCast } from "~/vendor/streamgt.ts";
 
 let gettext: Language;
 

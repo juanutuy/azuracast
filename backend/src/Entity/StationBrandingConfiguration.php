@@ -41,4 +41,7 @@ final class StationBrandingConfiguration extends AbstractArrayEntity
     public ?string $offline_text = null {
         set => Types::stringOrNull($value, true);
     }
+
+    /** @var array<string, mixed>|null Luna Radio player custom settings. */
+    public ?array $lunaradio_config = null;
 }

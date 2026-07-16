@@ -32,13 +32,13 @@ final class DonateAdvisorCheck
         $event->addNotification(
             new Notification(
                 id: 'notification-donation',
-                title: __('AzuraCast is free and open-source software.'),
+                title: __('StreamGT is free and open-source software.'),
                 body: __(
-                    'If you are enjoying AzuraCast, please consider donating to support our work. We depend ' .
-                    'on donations to build new features, fix bugs, and keep AzuraCast modern, accessible and free.',
+                    'If you are enjoying StreamGT, please consider donating to support our work. We depend ' .
+                    'on donations to build new features, fix bugs, and keep StreamGT modern, accessible and free.',
                 ),
                 type: FlashLevels::Info,
-                actionLabel: __('Donate to AzuraCast'),
+                actionLabel: __('Donate to StreamGT'),
                 actionUrl: 'https://donate.azuracast.com/'
             )
         );

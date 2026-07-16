@@ -23,7 +23,7 @@ import luxon3Plugin from "@fullcalendar/luxon3";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import FullCalendar from "@fullcalendar/vue3";
 import { computed, useTemplateRef } from "vue";
-import { useAzuraCast } from "~/vendor/azuracast";
+import { useAzuraCast } from "~/vendor/streamgt";
 
 defineOptions({
     inheritAttrs: false,

@@ -2,6 +2,14 @@
 [data-bs-theme="light"] {
   --public-page-bg: url('~/img/hexbg.webp');
   --scrollbar-color: #{$gray-400};
+  --bs-body-bg: #EAECF0;
+  --bs-body-color: #233D4D;
+  --bs-primary: #FE7F2D;
+  --bs-primary-rgb: 254, 127, 45;
+  --bs-card-bg: #FFFFFF;
+  --bs-tertiary-bg: #EAECF0;
+  --bs-secondary-bg: #EAECF0;
+  --bs-border-color: #B2BDC6;
 }
 
 @include color-mode(dark, true) {
@@ -16,10 +24,19 @@
 
   --public-page-bg: url('~/img/hexbg_dark.webp');
   --scrollbar-color: #{$gray-800};
+  --bs-body-bg: #233D4D;
+  --bs-body-color: #EAECF0;
+  --bs-primary: #FE7F2D;
+  --bs-primary-rgb: 254, 127, 45;
+  --bs-card-bg: #14222B;
+  --bs-tertiary-bg: #1A2B37;
+  --bs-secondary-bg: #000000;
+  --bs-border-color: #2F4D5E;
   --bs-info-bg-subtle: #bbdefb;
   --bs-info-text-emphasis: #2C363D;
 
   .table-striped {
-    --bs-table-striped-bg: #2b2e37;
+    --bs-table-striped-bg: #1D313E;
   }
 }
+

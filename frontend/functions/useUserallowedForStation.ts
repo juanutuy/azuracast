@@ -4,7 +4,7 @@ import {
 } from "~/entities/ApiInterfaces.ts";
 import { useStationId } from "~/functions/useStationQuery.ts";
 import { useUserAllowed } from "~/functions/useUserAllowed.ts";
-import { useAzuraCastUser } from "~/vendor/azuracast.ts";
+import { useAzuraCastUser } from "~/vendor/streamgt.ts";
 
 export function useUserAllowedForStation() {
     const { permissions } = useAzuraCastUser();

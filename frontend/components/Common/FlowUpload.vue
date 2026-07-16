@@ -68,7 +68,7 @@ import Flow from "@flowjs/flow.js";
 import { defaultsDeep, forEach, toInteger } from "es-toolkit/compat";
 import { onMounted, onUnmounted, reactive, useTemplateRef } from "vue";
 import formatFileSize from "~/functions/formatFileSize";
-import { useAzuraCast } from "~/vendor/azuracast";
+import { useAzuraCast } from "~/vendor/streamgt";
 import { useTranslate } from "~/vendor/gettext";
 import IconIcCloudUpload from "~icons/ic/baseline-cloud-upload";
 

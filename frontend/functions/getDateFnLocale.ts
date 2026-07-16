@@ -21,7 +21,7 @@ import {
     zhCN,
 } from "date-fns/locale";
 import { isString } from "es-toolkit";
-import { useAzuraCast } from "~/vendor/azuracast.ts";
+import { useAzuraCast } from "~/vendor/streamgt.ts";
 
 const localeLookup: Record<string, Locale> = {
     en_US: enUS,

@@ -47,8 +47,12 @@ final class Vite
         string $componentPath
     ): ScriptDependencies {
         if (!$this->environment->isProduction()) {
+            $devPath = $componentPath;
+            if (str_starts_with($devPath, 'frontend/')) {
+                $devPath = substr($devPath, 9);
+            }
             return new ScriptDependencies(
-                js: $this->assetUrl($componentPath)
+                js: $this->assetUrl($devPath)
             );
         }
 

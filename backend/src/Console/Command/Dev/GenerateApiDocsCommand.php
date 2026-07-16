@@ -21,7 +21,7 @@ use Symfony\Component\Finder\Finder;
 
 #[AsCommand(
     name: 'azuracast:api:docs',
-    description: 'Trigger regeneration of AzuraCast API documentation.',
+    description: 'Trigger regeneration of StreamGT API documentation.',
 )]
 final class GenerateApiDocsCommand extends CommandAbstract
 {
@@ -58,7 +58,7 @@ final class GenerateApiDocsCommand extends CommandAbstract
         string $apiBaseUrl = 'https://demo.azuracast.com/api'
     ): ?OpenApi {
         define('AZURACAST_API_URL', $apiBaseUrl);
-        define('AZURACAST_API_NAME', 'AzuraCast Public Demo Server');
+        define('AZURACAST_API_NAME', 'StreamGT Public Demo Server');
         define('AZURACAST_VERSION', $version ?? Version::STABLE_VERSION);
 
         $srcDir = $this->environment->getBackendDirectory() . '/src';

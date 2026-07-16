@@ -1,5 +1,5 @@
 import { DateTime, Duration, Settings } from "luxon";
-import { useAzuraCast } from "~/vendor/azuracast";
+import { useAzuraCast } from "~/vendor/streamgt";
 
 type TimestampToRelative = (timestamp: number | null | undefined) => string;
 

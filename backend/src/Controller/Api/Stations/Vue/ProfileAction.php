@@ -74,6 +74,12 @@ final class ProfileAction implements SingleActionInterface
                     queryParams: ['embed' => 'true'],
                     absolute: true
                 ),
+                publicLunaradioEmbedUrl: $router->named(
+                    routeName: 'public:lunaradio',
+                    routeParams: ['station_id' => $station->short_name],
+                    queryParams: ['embed' => 'true'],
+                    absolute: true
+                ),
                 frontendAdminUri: (string)$frontend?->getAdminUrl($station, $router->getBaseUrl()),
                 frontendAdminPassword: $frontendConfig->admin_pw,
                 frontendSourcePassword: $frontendConfig->source_pw,

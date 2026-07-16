@@ -21,6 +21,8 @@
         </div>
 
         <div class="col-lg-5">
+            <lunaradio-player v-if="hasActiveBackend"/>
+
             <profile-requests v-if="hasActiveBackend"/>
 
             <profile-streamers v-if="hasActiveBackend"/>
@@ -48,6 +50,7 @@ import ProfileHeader from "~/components/Stations/Profile/HeaderPanel.vue";
 import NowPlayingNotStartedPanel from "~/components/Stations/Profile/NowPlayingNotStartedPanel.vue";
 import ProfileNowPlaying from "~/components/Stations/Profile/NowPlayingPanel.vue";
 import ProfilePublicPages from "~/components/Stations/Profile/PublicPagesPanel.vue";
+import LunaradioPlayer from "~/components/Stations/Profile/LunaradioPlayer.vue";
 import ProfileRequests from "~/components/Stations/Profile/RequestsPanel.vue";
 import ProfileSchedule from "~/components/Stations/Profile/SchedulePanel.vue";
 import ProfileStreamers from "~/components/Stations/Profile/StreamersPanel.vue";

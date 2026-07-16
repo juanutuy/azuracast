@@ -10,7 +10,7 @@ import { App, InjectionKey } from "vue";
 import { useNotify } from "~/components/Common/Toasts/useNotify.ts";
 import { ApiError } from "~/entities/ApiInterfaces.ts";
 import injectRequired from "~/functions/injectRequired.ts";
-import { useAzuraCast } from "~/vendor/azuracast.ts";
+import { useAzuraCast } from "~/vendor/streamgt.ts";
 import { useTranslate } from "~/vendor/gettext";
 import { useNProgress } from "~/vendor/nprogress.ts";
 

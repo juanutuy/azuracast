@@ -104,7 +104,7 @@ import { AnalyticsLevel } from "~/entities/ApiInterfaces.ts";
 import { useApiRouter } from "~/functions/useApiRouter.ts";
 import useStationDateTimeFormatter from "~/functions/useStationDateTimeFormatter.ts";
 import { useStationData } from "~/functions/useStationQuery.ts";
-import { useAzuraCastDashboardGlobals } from "~/vendor/azuracast.ts";
+import { useAzuraCastDashboardGlobals } from "~/vendor/streamgt.ts";
 
 const { analyticsLevel } = useAzuraCastDashboardGlobals();
 const showFullAnalytics = analyticsLevel === AnalyticsLevel.All;

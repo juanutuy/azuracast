@@ -68,7 +68,7 @@ export function useAdminMenu() {
                 },
                 {
                     key: "updates",
-                    label: $gettext("Update AzuraCast"),
+                    label: $gettext("Update StreamGT"),
                     url: {
                         name: "admin:updates:index",
                     },

@@ -3,7 +3,7 @@
         <template #info>
             <p class="card-text">
                 {{
-                    $gettext('AzuraRelay is a standalone service that connects to your AzuraCast instance, automatically relays your stations via its own server, then reports the listener details back to your main instance. This page shows all currently connected instances.')
+                    $gettext('AzuraRelay is a standalone service that connects to your StreamGT instance, automatically relays your stations via its own server, then reports the listener details back to your main instance. This page shows all currently connected instances.')
                 }}
             </p>
 
@@ -51,7 +51,7 @@ import { Relay } from "~/entities/ApiInterfaces.ts";
 import { QueryKeys } from "~/entities/Queries.ts";
 import { useApiItemProvider } from "~/functions/dataTable/useApiItemProvider.ts";
 import { useApiRouter } from "~/functions/useApiRouter.ts";
-import { useAzuraCast } from "~/vendor/azuracast";
+import { useAzuraCast } from "~/vendor/streamgt";
 import { useTranslate } from "~/vendor/gettext";
 import { useLuxon } from "~/vendor/luxon";
 

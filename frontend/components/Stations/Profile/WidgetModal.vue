@@ -384,6 +384,10 @@ const types = computed(() => {
             text: $gettext("Radio Player"),
         },
         {
+            value: "lunaradio",
+            text: $gettext("Lunaradio Player"),
+        },
+        {
             value: "history",
             text: $gettext("History"),
         },
@@ -457,6 +461,9 @@ const layoutOptions = computed(() => {
 
 const baseEmbedUrl = computed(() => {
     switch (selectedType.value) {
+        case "lunaradio":
+            return profileData.value.publicLunaradioEmbedUrl;
+
         case "history":
             return profileData.value.publicHistoryEmbedUrl;
 
@@ -580,6 +587,9 @@ const embedUrl = computed(() => {
 
 const embedHeight = computed(() => {
     switch (selectedType.value) {
+        case "lunaradio":
+            return "380px";
+
         case "ondemand":
         case "podcasts":
             return "400px";

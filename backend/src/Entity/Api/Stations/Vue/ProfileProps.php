@@ -30,6 +30,8 @@ class ProfileProps
         #[OA\Property]
         public string $publicPodcastsEmbedUrl,
         #[OA\Property]
+        public string $publicLunaradioEmbedUrl,
+        #[OA\Property]
         public string $frontendAdminUri,
         #[OA\Property]
         public string $frontendAdminPassword,

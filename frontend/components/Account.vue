@@ -47,7 +47,7 @@ import AccountEditModal from "~/components/Account/EditModal.vue";
 import SecurityPanel from "~/components/Account/SecurityPanel.vue";
 import UserInfoPanel from "~/components/Account/UserInfoPanel.vue";
 import DashboardNoSidebar from "~/components/Layout/DashboardNoSidebar.vue";
-import { useAzuraCastDashboardGlobals } from "~/vendor/azuracast.ts";
+import { useAzuraCastDashboardGlobals } from "~/vendor/streamgt.ts";
 import IconIcEdit from "~icons/ic/baseline-edit";
 
 const { supportedLocales } = useAzuraCastDashboardGlobals();

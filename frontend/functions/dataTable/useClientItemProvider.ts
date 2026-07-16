@@ -6,7 +6,7 @@ import {
     DataTableItemProvider,
     DataTableRow,
 } from "~/functions/useHasDatatable.ts";
-import { useAzuraCast } from "~/vendor/azuracast.ts";
+import { useAzuraCast } from "~/vendor/streamgt.ts";
 
 export function useClientItemProvider<Row extends DataTableRow = DataTableRow>(
     items: MaybeRefOrGetter<Row[]>,

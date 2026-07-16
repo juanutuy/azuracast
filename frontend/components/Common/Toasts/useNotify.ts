@@ -2,7 +2,7 @@ import { remove } from "es-toolkit";
 import { defineStore } from "pinia";
 import { ref, VNode } from "vue";
 import { FlashLevels } from "~/entities/ApiInterfaces.ts";
-import { useAzuraCast } from "~/vendor/azuracast.ts";
+import { useAzuraCast } from "~/vendor/streamgt.ts";
 import { useTranslate } from "~/vendor/gettext";
 
 type ToastMessage = string | VNode[];

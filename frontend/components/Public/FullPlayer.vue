@@ -7,10 +7,7 @@
                 </h2>
 
                 <div class="stations nowplaying">
-                    <radio-player
-                        v-bind="player"
-                        @np_updated="onNowPlayingUpdate"
-                    />
+                    <lunaradio-player :minimal="true" :station-short-name="stationShortName" />
                 </div>
             </div>
             <div class="card-body buttons pt-0">
@@ -67,11 +64,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, shallowRef, useTemplateRef } from "vue";
+import { computed, shallowRef, useTemplateRef, toRef, watch } from "vue";
 import Lightbox from "~/components/Common/Lightbox.vue";
 import RequestModal from "~/components/Public/FullPlayer/RequestModal.vue";
 import SongHistoryModal from "~/components/Public/FullPlayer/SongHistoryModal.vue";
-import RadioPlayer, { PlayerProps } from "~/components/Public/Player.vue";
+import LunaradioPlayer from "~/components/Stations/Profile/LunaradioPlayer.vue";
+import { PlayerProps } from "~/components/Public/Player.vue";
 import { RequestsProps } from "~/components/Public/Requests.vue";
 import {
     ApiNowPlaying,
@@ -79,6 +77,7 @@ import {
 } from "~/entities/ApiInterfaces.ts";
 import { defaultWidgetSettings } from "~/entities/PublicPlayer.ts";
 import { useProvideLightbox } from "~/vendor/lightbox";
+import useNowPlaying from "~/functions/useNowPlaying";
 import IconIcCloudDownload from "~icons/ic/baseline-cloud-download";
 import IconIcHelp from "~icons/ic/baseline-help";
 import IconIcHistory from "~icons/ic/baseline-history";
@@ -95,11 +94,17 @@ const widgetCustomization = computed(
     () => props.player.widgetCustomization ?? defaultWidgetSettings,
 );
 
+const stationShortName = computed(() => props.player?.nowPlayingProps?.stationShortName || "");
+
+const { np } = useNowPlaying(toRef(props.player, "nowPlayingProps"));
+
 const history = shallowRef<ApiNowPlayingSongHistory[]>([]);
 
 const onNowPlayingUpdate = (newNowPlaying: ApiNowPlaying) => {
     history.value = newNowPlaying?.song_history;
 };
+
+watch(np, onNowPlayingUpdate, { immediate: true });
 
 const $songHistoryModal = useTemplateRef("$songHistoryModal");
 

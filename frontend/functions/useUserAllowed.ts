@@ -1,5 +1,5 @@
 import { GlobalPermissions } from "~/entities/ApiInterfaces.ts";
-import { useAzuraCastUser } from "~/vendor/azuracast.ts";
+import { useAzuraCastUser } from "~/vendor/streamgt.ts";
 
 export function useUserAllowed() {
     const { permissions } = useAzuraCastUser();

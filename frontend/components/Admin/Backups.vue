@@ -165,7 +165,7 @@ import formatFileSize from "~/functions/formatFileSize";
 import { useApiRouter } from "~/functions/useApiRouter.ts";
 import { HasRelistEmit } from "~/functions/useBaseEditModal.ts";
 import useConfirmAndDelete from "~/functions/useConfirmAndDelete";
-import { useAzuraCast } from "~/vendor/azuracast";
+import { useAzuraCast } from "~/vendor/streamgt";
 import { useTranslate } from "~/vendor/gettext";
 import { useLuxon } from "~/vendor/luxon";
 import IconIcAssignment from "~icons/ic/baseline-assignment";

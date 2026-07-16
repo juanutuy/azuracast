@@ -1,5 +1,9 @@
 <template>
-    <player v-bind="props"
+    <div v-if="isLunaPlayer" class="w-100 h-100">
+        <lunaradio-player :minimal="true" />
+    </div>
+    <player v-else
+            v-bind="props"
             :class="widgetClasses"
             :style="widgetStyles"/>
 </template>
@@ -8,7 +12,10 @@
 import { useHead, useHeadSafe } from "@unhead/vue";
 import { computed } from "vue";
 import Player, { PlayerProps } from "~/components/Public/Player.vue";
+import LunaradioPlayer from "~/components/Stations/Profile/LunaradioPlayer.vue";
 import { defaultWidgetSettings } from "~/entities/PublicPlayer.ts";
+
+const isLunaPlayer = new URLSearchParams(window.location.search).get("player") === "luna";
 
 defineOptions({
     inheritAttrs: false,
