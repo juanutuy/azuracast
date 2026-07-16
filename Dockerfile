@@ -179,6 +179,11 @@ RUN composer install --no-dev --no-ansi --no-autoloader --no-interaction \
     && composer dump-autoload --optimize --classmap-authoritative \
     && composer clear-cache
 
+RUN npm ci --include=dev \
+    && npm run build \
+    && npm cache clean --force \
+    && rm -rf node_modules
+
 USER root
 
 # Entrypoint and default command
