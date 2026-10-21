@@ -15,7 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
     ORM\Index(name: 'idx_is_visible', columns: ['is_visible']),
     ORM\Index(name: 'idx_timestamp_start', columns: ['timestamp_start']),
     ORM\Index(name: 'idx_timestamp_end', columns: ['timestamp_end']),
-    ORM\Index(name: 'idx_station_visible_id', columns: ['station_id', 'is_visible', 'id'])
+    ORM\Index(name: 'idx_station_visible_id', columns: ['station_id', 'is_visible', 'id']),
+    ORM\Index(name: 'idx_station_timestamps', columns: ['station_id', 'timestamp_end', 'timestamp_start'])
 ]
 final class SongHistory implements
     Interfaces\SongInterface,
@@ -47,6 +48,12 @@ final class SongHistory implements
     public ?int $playlist_id {
         get => $this->playlist?->id;
     }
+
+    /**
+     * @var ?list<string>
+     */
+    #[ORM\Column(type: 'json', nullable: true)]
+    public ?array $playlist_chain = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(name: 'streamer_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
@@ -221,6 +228,7 @@ final class SongHistory implements
         $sh->media = $queue->media;
         $sh->request = $queue->request;
         $sh->playlist = $queue->playlist;
+        $sh->playlist_chain = $queue->playlist_chain;
         $sh->duration = $queue->duration;
         $sh->updateVisibility();
 

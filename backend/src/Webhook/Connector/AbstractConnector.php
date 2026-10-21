@@ -9,12 +9,10 @@ use App\Entity\Api\NowPlaying\NowPlaying;
 use App\Entity\StationWebhook;
 use App\Utilities\Arrays;
 use App\Utilities\Types;
-use App\Utilities\Urls;
+use App\Utilities\UserUrlFilter;
 use GuzzleHttp\Client;
 use InvalidArgumentException;
-use PhpIP\IP;
 use Psr\Http\Message\ResponseInterface;
-use Throwable;
 
 abstract class AbstractConnector implements ConnectorInterface
 {
@@ -23,7 +21,8 @@ abstract class AbstractConnector implements ConnectorInterface
     public const string RATE_LIMIT_KEY = 'rate_limit';
 
     public function __construct(
-        protected Client $httpClient
+        protected readonly Client $httpClient,
+        protected readonly UserUrlFilter $userUrlFilter
     ) {
     }
 
@@ -101,46 +100,6 @@ abstract class AbstractConnector implements ConnectorInterface
                 $varValue
             );
         }, $rawVars);
-    }
-
-    /**
-     * Determine if a passed URL is valid and return it if so, or return null otherwise.
-     */
-    protected function getValidUrl(mixed $urlString = null): ?string
-    {
-        $urlString = Types::stringOrNull($urlString, true);
-
-        $uri = Urls::tryParseUserUrl(
-            $urlString,
-            'Webhook'
-        );
-
-        if (null === $uri) {
-            return null;
-        }
-
-        // Special protections for certain internal IPs.
-        try {
-            $ip = IP::create($uri->getHost());
-        } catch (Throwable) {
-            $ip = null;
-        }
-
-        if ($ip instanceof IP) {
-            // Prohibit link-local IP addresses.
-            if ($ip->isLinkLocal()) {
-                $this->logger->error(
-                    sprintf(
-                        'Webhook uses prohibited link-local IP: "%s"',
-                        $ip
-                    )
-                );
-
-                return null;
-            }
-        }
-
-        return (string)$uri;
     }
 
     protected function incompleteConfigException(StationWebhook $webhook): InvalidArgumentException

@@ -61,6 +61,10 @@ jobs:
         run: |
           vendor/bin/parallel-lint . --exclude vendor --checkstyle | cs2pr
 
+      - name: Build Codeception actors
+        run: |
+          vendor/bin/codecept build
+
       - name: Run PHPStan
         run: |
           vendor/bin/phpstan analyze --memory-limit=-1 --error-format=checkstyle | cs2pr
@@ -69,6 +73,18 @@ jobs:
         run: |
           vendor/bin/phpcs --report=checkstyle | cs2pr
 
+      - name: Run Unit Tests
+        run: |
+          vendor/bin/codecept run Unit --no-interaction
+
+      - name: Check Added DB Migrations
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          git fetch --no-tags --depth=1 origin "$BASE_SHA"
+          php backend/bin/console azuracast:dev:check-migrations "$BASE_SHA"
+
   node-test:
     name: Node Test Suite
     runs-on: ubuntu-latest
@@ -76,7 +92,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: "lts/jod"
           cache: "npm"
@@ -116,7 +132,7 @@ jobs:
           key: ${{ runner.OS }}-build-${{ hashFiles('composer.lock') }}
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: "lts/jod"
           cache: "npm"
@@ -137,7 +153,7 @@ jobs:
           backend/bin/console locale:generate
 
       - name: Pull latest translations.
-        uses: crowdin/github-action@v2.16.3
+        uses: crowdin/github-action@v3.4.0
         with:
           upload_sources: true
           download_translations: true

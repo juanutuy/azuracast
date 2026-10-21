@@ -5,15 +5,80 @@ release channel, you can take advantage of these new features and fixes.
 
 ## New Features/Changes
 
+- **Grouped/Nested Playlists/Clockwheels**: This highly-requested feature is now available in AzuraCast. With grouped
+  playlists, you can create a playlist that is made up of other smaller playlists configured to play consecutively
+  following certain rules. This level of fine-grained control was previously only possible with custom Liquidsoap code.
+
+- **Request Queue Playlists**: This feature introduces a new playlist source, the request queue itself, giving stations
+  more fine-tuned control of when user requests are played in their rotation.
+
+- **Block Requests During Schedule Blocks**: You can now indicate that listener song requests should not be submitted or
+  processed in a given schedule block.
+
+- **Playlist JSON Importer/Exporter**: You can export the entire playlist configuration of your station, or an
+  individual playlist, as a JSON data file that can be imported into other instances of AzuraCast (or other stations on
+  the same instance) for easy portability and preservation of complex playlist configurations.
+
 ## Code Quality/Technical Changes
+
+- Separated background message queue processing into "fast" and "slow" queues to avoid slower tasks interrupting
+  immediate ones (like webhook dispatch).
+
+- Improved the security around StereoTool invocation in Liquidsoap.
+
+- Extended the internal URL filtering security mechanism implemented in previous versions to include additional webhook
+  types.
+
+- Improved the security around waveform API endpoints.
+
+- Improved the security of environment variables in Supervisor process configuration.
+
+- Prevented station managers without the "Manage Broadcasting" permission from setting Shoutcast configuration.
+
+## Bug Fixes
+
+- Fixed a bug (and minor security problem) where newlines in mount/remote names would appear in playlist file exports.
+
+---
+
+# AzuraCast 0.23.9 (Oct 21, 2026)
+
+This release is solely intended to update our distributed Docker containers to an updated version of PHP that patches recently released high-severity security vulnerabilities.
+
+It does not introduce any new features nor require any additional steps to migrate.
+
+ALL existing AzuraCast users are strongly urged to upgrade to this version if on an older one.
+
+---
+
+# AzuraCast 0.23.8 (Aug 9, 2026)
+
+This release is primarily a quality-of-life release, addressing several security issues that were identified by
+community researchers and expanding the tools available to installation owners to help lock down their installations.
+
+## New Features/Changes
+
+- Added a new system-wide toggle to heavily filter user-supplied URLs in certain sensitive scenarios. In some places
+  (notably, Webhooks and Remote Relays), station administrators can input a URL that will then invoke outbound HTTP
+  requests from your installation. Multi-tenant installations or resellers should enable this setting, in order to
+  prevent users from possibly exfiltrating local data about your hosting setup. If you are running a single-installation
+  station locally, you can likely leave this setting disabled, which will allow you to use local services for these
+  items.
 
 - Added a new system-wide toggle for enabling or disabling Web Hooks on all stations. Because web hooks dispatch an
   outgoing HTTP POST request from your AzuraCast installation, this may be considered a security risk in your
   infrastructure, so you can disable them entirely as a safety measure.
 
-- Added an extra check to on-demand media downloads to ensure only media in on-demand playlists is downloadable.
-
 ## Bug Fixes
+
+- Fixed a bug preventing users from changing their password on the accounts page.
+
+- Fixed an issue where some players would not play proxied radio streams (i.e. `/listen/station`) because chunked
+  encoding was in use.
+
+- Apply optional user URL filtering to Webhooks (Generic, Matomo and Discord), Remote Relays and Remote URL playlists.
+
+- Added an extra check to on-demand media downloads to ensure only media in on-demand playlists is downloadable.
 
 ---
 

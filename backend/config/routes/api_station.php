@@ -340,26 +340,31 @@ return static function (RouteCollectorProxy $group) {
                         ->setName('api:stations:quota')
                         ->add(new Middleware\Permissions(StationPermissions::View, true));
 
-                    $group->get(
-                        '/waveform/{media_id:[a-zA-Z0-9\-]+}[-{timestamp}.json]',
-                        Controller\Api\Stations\Waveform\GetWaveformAction::class
-                    )->setName('api:stations:media:waveform')
-                        ->add(new Middleware\Cache\SetStaticFileCache());
-
-                    $group->post(
-                        '/waveform/{media_id:[a-zA-Z0-9\-]+}',
-                        Controller\Api\Stations\Waveform\PostCacheWaveformAction::class
-                    )->setName('api:stations:media:waveform-cache');
-
-                    $group->post('/art/{media_id:[a-zA-Z0-9]+}', Controller\Api\Stations\Art\PostArtAction::class)
-                        ->add(new Middleware\Permissions(StationPermissions::Media, true));
-
-                    $group->delete('/art/{media_id:[a-zA-Z0-9]+}', Controller\Api\Stations\Art\DeleteArtAction::class)
-                        ->add(new Middleware\Permissions(StationPermissions::Media, true));
-
+                    // Endpoints gated by Media feature AND Media permission.
                     $group->group(
                         '',
                         function (RouteCollectorProxy $group) {
+                            $group->get(
+                                '/waveform/{media_id:[a-zA-Z0-9\-]+}[-{timestamp}.json]',
+                                Controller\Api\Stations\Waveform\GetWaveformAction::class
+                            )->setName('api:stations:media:waveform')
+                                ->add(new Middleware\Cache\SetStaticFileCache());
+
+                            $group->post(
+                                '/waveform/{media_id:[a-zA-Z0-9\-]+}',
+                                Controller\Api\Stations\Waveform\PostCacheWaveformAction::class
+                            )->setName('api:stations:media:waveform-cache');
+
+                            $group->post(
+                                '/art/{media_id:[a-zA-Z0-9]+}',
+                                Controller\Api\Stations\Art\PostArtAction::class
+                            );
+
+                            $group->delete(
+                                '/art/{media_id:[a-zA-Z0-9]+}',
+                                Controller\Api\Stations\Art\DeleteArtAction::class
+                            );
+
                             $group->group(
                                 '/files',
                                 function (RouteCollectorProxy $group) {
@@ -408,7 +413,7 @@ return static function (RouteCollectorProxy $group) {
                                         Controller\Api\Stations\Files\FlowUploadAction::class
                                     )->setName('api:stations:files:upload');
                                 }
-                            )->add(new Middleware\Permissions(StationPermissions::Media, true));
+                            );
 
                             $group->group(
                                 '/file/{id}',
@@ -416,13 +421,12 @@ return static function (RouteCollectorProxy $group) {
                                     $group->get(
                                         '',
                                         Controller\Api\Stations\FilesController::class . ':getAction'
-                                    )->setName('api:stations:file')
-                                        ->add(new Middleware\Permissions(StationPermissions::Media, true));
+                                    )->setName('api:stations:file');
 
                                     $group->put(
                                         '',
                                         Controller\Api\Stations\FilesController::class . ':editAction'
-                                    )->add(new Middleware\Permissions(StationPermissions::Media, true));
+                                    );
 
                                     $group->delete(
                                         '',
@@ -430,12 +434,12 @@ return static function (RouteCollectorProxy $group) {
                                     )->add(new Middleware\Permissions(StationPermissions::DeleteMedia, true));
 
                                     $group->get('/play', Controller\Api\Stations\Files\PlayAction::class)
-                                        ->setName('api:stations:files:play')
-                                        ->add(new Middleware\Permissions(StationPermissions::Media, true));
+                                        ->setName('api:stations:files:play');
                                 }
                             );
                         }
-                    )->add(new Middleware\StationSupportsFeature(StationFeatures::Media));
+                    )->add(new Middleware\StationSupportsFeature(StationFeatures::Media))
+                        ->add(new Middleware\Permissions(StationPermissions::Media, true));
 
                     // SFTP Users
                     $group->group(
@@ -613,6 +617,16 @@ return static function (RouteCollectorProxy $group) {
                                 Controller\Api\Stations\PlaylistsController::class . ':scheduleAction'
                             )->setName('api:stations:playlists:schedule');
 
+                            $group->get(
+                                '/playlists/export-config',
+                                Controller\Api\Stations\Playlists\ExportConfigAction::class
+                            )->setName('api:stations:playlists:export_config');
+
+                            $group->post(
+                                '/playlists/import-config',
+                                Controller\Api\Stations\Playlists\ImportConfigAction::class
+                            )->setName('api:stations:playlists:import_config');
+
                             $group->group(
                                 '/playlist/{id}',
                                 function (RouteCollectorProxy $group) {
@@ -677,6 +691,11 @@ return static function (RouteCollectorProxy $group) {
                                     )->setName('api:stations:playlist:export');
 
                                     $group->get(
+                                        '/export-config',
+                                        Controller\Api\Stations\Playlists\ExportConfigAction::class
+                                    )->setName('api:stations:playlist:export_config');
+
+                                    $group->get(
                                         '/apply-to',
                                         Controller\Api\Stations\Playlists\GetApplyToAction::class
                                     )->setName('api:stations:playlist:applyto');
@@ -690,6 +709,11 @@ return static function (RouteCollectorProxy $group) {
                                         '/empty',
                                         Controller\Api\Stations\Playlists\EmptyAction::class
                                     )->setName('api:stations:playlist:empty');
+
+                                    $group->put(
+                                        '/members',
+                                        Controller\Api\Stations\Playlists\PutMembersAction::class
+                                    )->setName('api:stations:playlist:members');
                                 }
                             );
                         }
