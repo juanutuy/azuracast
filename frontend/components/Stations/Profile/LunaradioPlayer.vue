@@ -149,7 +149,7 @@ const props = defineProps<{
   minimal?: boolean;
   stationShortName?: string;
 }>();
-const playerId = "lnr_" + Math.random().toString(36).substring(2, 9);
+const playerId = `lnr_${Math.random().toString(36).substring(2, 9)}`;
 const streamUrl = ref("");
 const loading = ref(true);
 const showSettings = ref(false);
@@ -167,7 +167,7 @@ const stationIdentifier = computed(() => {
     return props.stationShortName;
   }
   const id = Number(stationId.value);
-  return (!isNaN(id) && id > 0) ? id : "loading";
+  return (!Number.isNaN(id) && id > 0) ? id : "loading";
 });
 
 const { getStationApiUrl } = useApiRouter();
@@ -239,7 +239,7 @@ const loadScript = (url: string): Promise<void> =>
     const s = document.createElement("script");
     s.src = url;
     s.onload = () => resolve();
-    s.onerror = () => reject(new Error("fail " + url));
+    s.onerror = () => reject(new Error(`fail ${url}`));
     document.head.appendChild(s);
   });
 

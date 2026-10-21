@@ -75,7 +75,7 @@ export const useStationQuery = () => {
         },
         enabled: computed(() => {
             const id = stationId.value;
-            return id !== null && !isNaN(id) && id > 0;
+            return id !== null && !Number.isNaN(id) && id > 0;
         }),
         staleTime: 10 * 60 * 1000,
         placeholderData: blankStationGlobals,

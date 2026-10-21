@@ -22,7 +22,7 @@ import { storeToRefs } from "pinia";
 import { Protocol } from "pmtiles";
 import { onMounted, onUnmounted, shallowRef, useTemplateRef, watch } from "vue";
 import { Theme, useTheme } from "~/functions/theme.ts";
-import { useAzuraCast } from "~/vendor/azuracast.ts";
+import { useAzuraCast } from "~/vendor/streamgt.ts";
 import { useTranslate } from "~/vendor/gettext.ts";
 
 defineSlots<{
